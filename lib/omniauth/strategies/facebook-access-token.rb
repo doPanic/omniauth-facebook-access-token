@@ -85,7 +85,7 @@ module OmniAuth
         # Validate that the token belong to the application
         app_raw = self.access_token.get('/app').parsed
         if app_raw["id"] != options.client_id
-          raise ArgumentError.new("Access token doesn't belong to the client.")
+          raise ArgumentError.new("Access token doesn't belong to the client. (#{app_raw["id"]} vs. client_id: #{options.client_id})")
         end
 
         # Instead of calling super, duplicate the functionlity, but change the provider to 'facebook'.
